@@ -19,7 +19,7 @@ var showTopAnswerers = function(topAnswerersResults) {
 	var result = $('.templates .answerers').clone(); 
 
 	var avatar = result.find('.avatar')
-	avatar.attr('src', topAnswerersResults.items.user.profile_image);  
+	avatar.attr('src', topAnswerersResults.user.profile_image);  
 
 	var name = result.find('.name');
 	name.text(topAnswerersResults.display_name);
@@ -132,19 +132,19 @@ var request = {
 
 
     var result = $.ajax({
-        url: "http://api.stackexchange.com//2.2/tags/" + request.tag  + "/top-answerers/all_time", 
+        url: "http://api.stackexchange.com/2.2/tags/" + request.tag  + "/top-answerers/all_time", 
         data: request,
         dataType: "jsonp",
         type: "GET",
     })
         .done(function (result) {
-        console.log(result);
+        //console.log(result);
         $(result.items).each(function (i, index) {
 
         //$.each(result.items, function(i, item) {
             //console.log(result.items[i]);
-            var topAnswerersResults = showTopAnswerers(index); //stores index results 
-            console.log(showTopAnswerers);
+            var topAnswerersResults = result.items[i]; //stores index results 
+            console.log(topAnswerersResults);
             //topAnswerersResults.AppendTo('.results'); 
             $('.results').append(topAnswerersResults); 
 
