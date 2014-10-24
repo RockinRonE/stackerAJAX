@@ -19,9 +19,9 @@ var showTopAnswerers = function(topAnswerersResults) {
 	var result = $('.templates .answerers').clone(); 
 
 	var avatar = result.find('.avatar')
-	avatar.attr('src', topAnswerersResults.user.profile_image);  
+	avatar.attr('src', topAnswerersResults.profile_image);  
 
-	var name = result.find('.name');
+	var name = result.find('.name')
 	name.text(topAnswerersResults.display_name);
 
 	var rate = result.find('.rate');
@@ -140,13 +140,17 @@ var request = {
         .done(function (result) {
         //console.log(result);
         $(result.items).each(function (i, index) {
-
+        	var topAnswerersResults = result.items[i].user;
+        	//var topAnswerersResults = showTopAnswerers(index);
+        	$('.results').append(topAnswerersResults);
         //$.each(result.items, function(i, item) {
+        	console.log(topAnswerersResults); 
             //console.log(result.items[i]);
-            var topAnswerersResults = result.items[i]; //stores index results 
-            console.log(topAnswerersResults);
+            //var topAnswerersResults = result.items[i]; //stores index results 
+            //console.log(topAnswerersResults.user);
             //topAnswerersResults.AppendTo('.results'); 
-            $('.results').append(topAnswerersResults); 
+            //var topAnswer = topAnswerersResults.user; 
+            //$('.results').append(topAnswer); 
 
 
            
