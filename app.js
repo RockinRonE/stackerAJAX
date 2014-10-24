@@ -18,8 +18,9 @@ var showTopAnswerers = function(topAnswerersResults) {
 
 	var result = $('.templates .answerers').clone(); 
 
-	var avatar = result.find('.avatar')
-	avatar.attr('src', topAnswerersResults.profile_image);  
+	var avatar = result.find('.avatar img')
+	avatar.attr('src', topAnswerersResults.profile_image); 
+	console.log(topAnswerersResults.profile_image); 
 
 	var name = result.find('.name')
 	name.text(topAnswerersResults.display_name);
@@ -140,11 +141,12 @@ var request = {
         .done(function (result) {
         //console.log(result);
         $(result.items).each(function (i, index) {
+        	//var topAnswerersResults = result.items[i];
         	var topAnswerersResults = result.items[i].user;
-        	//var topAnswerersResults = showTopAnswerers(index);
-        	$('.results').append(topAnswerersResults);
+        	console.log(topAnswerersResults);
+        	$('.results').append(showTopAnswerers(topAnswerersResults));
         //$.each(result.items, function(i, item) {
-        	console.log(topAnswerersResults); 
+        	//console.log(topAnswerersResults); 
             //console.log(result.items[i]);
             //var topAnswerersResults = result.items[i]; //stores index results 
             //console.log(topAnswerersResults.user);
